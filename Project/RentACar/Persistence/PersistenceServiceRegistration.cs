@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Services.Repositories;
+using Core.Security.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,11 @@ namespace Persistence
             services.AddDbContext<BaseDbContext>(options=>options.UseSqlServer(configuration.GetConnectionString("RentACarCampConnectionString")));
             services.AddScoped<IBrandRepository,BrandRepository>();
             services.AddScoped<IModelRepository,ModelRepository>();
+            services.AddScoped<IUserRepository,UserRepository>();
+            services.AddScoped<IOperationClaimRepository,OperationClaimRepository>();
+            services.AddScoped<IUserOperationClaimsRepository,UserOperationClaimRepository>();
+
+
             return services;
         }
     }
