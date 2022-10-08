@@ -82,6 +82,19 @@ namespace Persistence.Contexts
                 a.HasOne(p=>p.User);
             });
 
+            modelBuilder.Entity<RefreshToken>(a =>
+            {
+                a.ToTable("RefreshTokens").HasKey(k=>k.Id);
+                a.Property(p => p.UserId).HasColumnName("UserId");
+                a.Property(p => p.Created).HasColumnName("Created");
+                a.Property(p => p.CreatedByIp).HasColumnName("CreatedByIp");
+                a.Property(p => p.Expires).HasColumnName("Expires");
+                a.Property(p => p.ReasonRevoked).HasColumnName("ReasonRevoked");
+                a.Property(p => p.ReplacedByToken).HasColumnName("ReplacedByToken");
+                a.Property(p => p.RevokedByIp).HasColumnName("RevokedByIp");
+                a.Property(p => p.Token).HasColumnName("Token");
+                a.HasOne(p=>p.User);
+            });
             Brand[] brandEntitySeeds = {new(1, "Kara Passat"), new(2, "Kurşun izli Passat")};
             modelBuilder.Entity<Brand>().HasData(brandEntitySeeds);
 
